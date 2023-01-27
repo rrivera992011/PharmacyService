@@ -1,11 +1,15 @@
 package com.solvd.pharmacyservice.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "category")
 @XmlType(propOrder = {"categoryId", "categoryName"})
 public class Category {
+    @JsonProperty
     private int categoryId;
+    @JsonProperty
     private String categoryName;
 
     public Category(int categoryId, String categoryName) {

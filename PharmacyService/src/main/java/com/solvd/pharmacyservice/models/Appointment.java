@@ -1,9 +1,8 @@
 package com.solvd.pharmacyservice.models;
+
 import javax.xml.bind.annotation.*;
 import java.sql.Date;
 
-@XmlRootElement(name = "appointment")
-@XmlType(propOrder = {"appointmentId", "appointmentDate", "customerId", "employeeId", "appointmentTypeId"})
 public class Appointment {
 
     private int appointmentId;
@@ -28,7 +27,6 @@ public class Appointment {
         return this.appointmentId;
     }
 
-    @XmlAttribute(name = "id")
     public void setAppointmentId(int appointmentId) {
         this.appointmentId = appointmentId;
     }
@@ -37,7 +35,6 @@ public class Appointment {
         return this.appointmentDate;
     }
 
-    @XmlElement(name = "appointmentDate")
     public void setAppointmentDate(Date appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
@@ -46,7 +43,6 @@ public class Appointment {
         return this.customerId;
     }
 
-    @XmlElement(name = "customerId")
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
@@ -55,7 +51,6 @@ public class Appointment {
         return this.employeeId;
     }
 
-    @XmlElement(name = "employeeId")
     public void setEmployeeId(int employeeId) {
         this.employeeId = employeeId;
     }
@@ -64,7 +59,6 @@ public class Appointment {
         return this.appointmentTypeId;
     }
 
-    @XmlElement(name = "appointmentTypeId")
     public void setAppointmentTypeId(int appointmentTypeId) {
         this.appointmentTypeId = appointmentTypeId;
     }

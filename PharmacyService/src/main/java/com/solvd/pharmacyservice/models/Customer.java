@@ -1,5 +1,8 @@
 package com.solvd.pharmacyservice.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.*;
 import java.util.Date;
 
@@ -7,12 +10,20 @@ import java.util.Date;
 @XmlType(propOrder = {"customerId", "firstName", "lastName", "phoneNumber", "age", "address", "dateOfBirth"})
 public class Customer {
 
+    @JsonProperty
     private int customerId;
+    @JsonProperty
     private String firstName;
+    @JsonProperty
     private String lastName;
+    @JsonProperty
     private String phoneNumber;
+    @JsonProperty
     private int age;
+    @JsonProperty
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
+    @JsonProperty
     private String address;
 
     public Customer(int customerId, String firstName, String lastName, String phoneNumber, int age, String address) {

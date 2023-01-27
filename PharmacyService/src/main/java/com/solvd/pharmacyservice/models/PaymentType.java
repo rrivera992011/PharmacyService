@@ -1,11 +1,15 @@
 package com.solvd.pharmacyservice.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "paymentType")
 @XmlType(propOrder = {"paymentTypeId", "paymentTypeName"})
 public class PaymentType {
+    @JsonProperty
     private int paymentTypeId;
+    @JsonProperty
     private String paymentTypeName;
 
     public PaymentType(int paymentTypeId, String paymentTypeName) {

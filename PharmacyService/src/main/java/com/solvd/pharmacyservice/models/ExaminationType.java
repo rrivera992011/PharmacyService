@@ -1,11 +1,15 @@
 package com.solvd.pharmacyservice.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "examinationType")
 @XmlType(propOrder = {"examinationTypeId", "examinationTypeName"})
 public class ExaminationType {
+    @JsonProperty
     private int examinationTypeId;
+    @JsonProperty
     private String examinationTypeName;
 
     public ExaminationType(int examinationTypeId, String examinationTypeName) {

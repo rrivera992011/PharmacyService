@@ -1,11 +1,7 @@
 package com.solvd.pharmacyservice.models;
 
-import javax.xml.bind.annotation.*;
 import java.sql.Date;
 
-@XmlRootElement(name = "prescription")
-@XmlType(propOrder = {"prescriptionId", "rxNumber", "priceOfPrescription", "amountOfMedicine", "dateFilled",
-        "customerId", "inventoryId", "recipeId"})
 public class Prescription {
     private int prescriptionId;
     private String rxNumber;
@@ -35,7 +31,6 @@ public class Prescription {
         return prescriptionId;
     }
 
-    @XmlAttribute(name = "id")
     public void setPrescriptionId(int prescriptionId) {
         this.prescriptionId = prescriptionId;
     }
@@ -44,7 +39,6 @@ public class Prescription {
         return rxNumber;
     }
 
-    @XmlElement(name = "rxNumber")
     public void setRxNumber(String rxNumber) {
         this.rxNumber = rxNumber;
     }
@@ -53,7 +47,6 @@ public class Prescription {
         return priceOfPrescription;
     }
 
-    @XmlElement(name = "priceOfPrescription")
     public void setPriceOfPrescription(double priceOfPrescription) {
         this.priceOfPrescription = priceOfPrescription;
     }
@@ -62,7 +55,6 @@ public class Prescription {
         return amountOfMedicine;
     }
 
-    @XmlElement(name = "amountOfMedicine")
     public void setAmountOfMedicine(int amountOfMedicine) {
         this.amountOfMedicine = amountOfMedicine;
     }
@@ -71,7 +63,6 @@ public class Prescription {
         return dateFilled;
     }
 
-    @XmlElement(name = "dateFilled")
     public void setDateFilled(Date dateFilled) {
         this.dateFilled = dateFilled;
     }
@@ -80,7 +71,6 @@ public class Prescription {
         return customerId;
     }
 
-    @XmlElement(name = "customerId")
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
@@ -89,7 +79,6 @@ public class Prescription {
         return inventoryId;
     }
 
-    @XmlElement(name = "inventoryId")
     public void setInventoryId(int inventoryId) {
         this.inventoryId = inventoryId;
     }
@@ -98,7 +87,6 @@ public class Prescription {
         return recipeId;
     }
 
-    @XmlElement(name = "recipeId")
     public void setRecipeId(int recipeId) {
         this.recipeId = recipeId;
     }

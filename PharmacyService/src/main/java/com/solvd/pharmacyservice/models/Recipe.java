@@ -1,11 +1,15 @@
 package com.solvd.pharmacyservice.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "recipe")
 @XmlType(propOrder = {"recipeId", "recipeSize"})
 public class Recipe {
+    @JsonProperty
     private int recipeId;
+    @JsonProperty
     private double recipeSize;
 
     public Recipe(int recipeId, double recipeSize) {

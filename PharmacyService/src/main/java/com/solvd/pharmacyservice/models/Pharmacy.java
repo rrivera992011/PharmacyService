@@ -7,6 +7,8 @@ import java.util.List;
 @XmlType(propOrder = {"customerList", "employeeTypeList", "employeeList", "appointmentTypeList", "examinationTypeList",
 "paymentTypeList", "recipeList", "categoryList", "inventoryList", "examinationList"})
 public class Pharmacy {
+    private int id;
+    private String name;
     private List<Customer> customerList;
     private List<EmployeeType> employeeTypeList;
     private List<Employee> employeeList;
@@ -21,11 +23,30 @@ public class Pharmacy {
     public Pharmacy() {
 
     }
+    public Pharmacy(int id, String name, List<Customer> customerList, List<EmployeeType> employeeTypeList, List<Employee> employeeList,
+                    List<AppointmentType> appointmentTypeList, List<ExaminationType> examinationTypeList,
+                    List<PaymentType> paymentTypeList, List<Recipe> recipeList, List<Category> categoryList,
+                    List<Inventory> inventoryList, List<Examination> examinationList) {
+
+        this.id = id;
+        this.name = name;
+        this.customerList = customerList;
+        this.employeeTypeList = employeeTypeList;
+        this.employeeList = employeeList;
+        this.appointmentTypeList = appointmentTypeList;
+        this.examinationTypeList = examinationTypeList;
+        this.paymentTypeList = paymentTypeList;
+        this.recipeList = recipeList;
+        this.categoryList = categoryList;
+        this.inventoryList = inventoryList;
+        this.examinationList = examinationList;
+    }
 
     public Pharmacy(List<Customer> customerList, List<EmployeeType> employeeTypeList, List<Employee> employeeList,
                     List<AppointmentType> appointmentTypeList, List<ExaminationType> examinationTypeList,
                     List<PaymentType> paymentTypeList, List<Recipe> recipeList, List<Category> categoryList,
                     List<Inventory> inventoryList, List<Examination> examinationList) {
+
 
         this.customerList = customerList;
         this.employeeTypeList = employeeTypeList;
@@ -37,6 +58,22 @@ public class Pharmacy {
         this.categoryList = categoryList;
         this.inventoryList = inventoryList;
         this.examinationList = examinationList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Customer> getCustomerList() {

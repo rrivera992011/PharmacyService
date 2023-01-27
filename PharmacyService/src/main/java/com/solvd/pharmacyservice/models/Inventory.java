@@ -1,15 +1,23 @@
 package com.solvd.pharmacyservice.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "inventory")
 @XmlType(propOrder = {"inventoryId", "medicineName", "amountLeft", "amountTaken", "categoryId", "priceOfMedicine"})
 public class Inventory {
+    @JsonProperty
     private int inventoryId;
+    @JsonProperty
     private String medicineName;
+    @JsonProperty
     private int amountLeft;
+    @JsonProperty
     private int amountTaken;
+    @JsonProperty
     private int categoryId;
+    @JsonProperty
     private double priceOfMedicine;
 
     public Inventory(int inventoryId, String medicineName, int amountLeft, int amountTaken, int categoryId, double priceOfMedicine) {
