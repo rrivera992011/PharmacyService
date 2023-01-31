@@ -71,7 +71,7 @@ public class CustomerDAO implements ICustomerDAO {
     }
 
     @Override
-    public Customer createEntity(Customer customer) {
+    public void createEntity(Customer customer) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO customer (customer_id, first_name, last_name, phone_number, age, address)" +
                 " VALUES((?), (?), (?), (?), (?), (?))";
@@ -94,8 +94,6 @@ public class CustomerDAO implements ICustomerDAO {
                 }
             }
         }
-
-        return customer;
     }
 
     @Override

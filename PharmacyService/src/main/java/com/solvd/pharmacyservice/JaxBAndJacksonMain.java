@@ -4,11 +4,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.solvd.pharmacyservice.models.*;
 import org.apache.logging.log4j.*;
 
-import java.io.*;
+import javax.xml.bind.*;
+import java.io.File;
+import java.io.IOException;
 import java.text.*;
 import java.util.*;
 
-public class JacksonMain {
+public class JaxBAndJacksonMain {
     private static final Logger LOGGER = LogManager.getLogger("TEST_LOGGER");
     final static Level MENU_LOG = Level.forName("MENU_LOG", 700);
 
@@ -95,16 +97,57 @@ public class JacksonMain {
         examinations.add(danielExamination);
         examinations.add(adamExamination);
 
-        Pharmacy pharmacy = new Pharmacy(1,"pharmacy-pharmacy " ,customers, employeeTypes, employees,
-                appointmentTypes, examinationTypes, paymentTypes, recipes, categories, inventories, examinations);
+        Pharmacy pharmacy = new Pharmacy(1,"pharmacy-pharmacy",customers, employeeTypes, employees,
+                appointmentTypes, examinationTypes, paymentTypes, recipes, categories, inventories,
+                examinations);
 
+        try{
+            JAXBContext context = JAXBContext.newInstance(Pharmacy.class, Customer.class, EmployeeType.class,
+                    Employee.class, AppointmentType.class, PaymentType.class, Recipe.class, Category.class,
+                    Inventory.class, Examination.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            marshaller.marshal(pharmacy, new File(System.getProperty("user.dir") + "/src/main/resources/pharmacy_output.xml"));
+            LOGGER.log(MENU_LOG, "Marshalling complete");
+        } catch (JAXBException e) {
+            LOGGER.error(e);
+        }
+
+        Pharmacy pharmacy1 = unmarshall();
+
+        LOGGER.log(MENU_LOG, "Unmarshall output");
+        LOGGER.log(MENU_LOG, pharmacy1 + "\n");
+
+
+        jackson(pharmacy);
+
+    }
+
+    public static Pharmacy unmarshall() {
+        Pharmacy pharmacy = new Pharmacy();
+
+        try{
+            JAXBContext context = JAXBContext.newInstance(Pharmacy.class, Customer.class, EmployeeType.class,
+                    Employee.class, AppointmentType.class, PaymentType.class, Recipe.class, Category.class,
+                    Inventory.class, Examination.class);
+            pharmacy = (Pharmacy) context.createUnmarshaller().unmarshal(new File(System.getProperty("user.dir") +
+                    "/src/main/resources/pharmacy_output.xml"));
+            LOGGER.log(MENU_LOG, "Unmarshalling complete\n");
+        } catch (JAXBException e) {
+            LOGGER.error(e);
+        }
+
+        return pharmacy;
+    }
+
+    private static void jackson(Pharmacy pharmacy){
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
             objectMapper.writeValue(new File(System.getProperty("user.dir") + "/src/main/resources/pharmacy_output.json"),
                     pharmacy);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            LOGGER.error(e);
         }
 
         Pharmacy pharmacyFromFile;
@@ -116,6 +159,7 @@ public class JacksonMain {
             throw new RuntimeException(e);
         }
 
+        LOGGER.log(MENU_LOG, "Jackson from file output");
         LOGGER.log(MENU_LOG, pharmacyFromFile);
 
     }

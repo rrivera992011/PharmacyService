@@ -60,7 +60,7 @@ public class AppointmentTypeDAO implements IAppointmentTypeDAO {
     }
 
     @Override
-    public AppointmentType createEntity(AppointmentType appointmentType) {
+    public void createEntity(AppointmentType appointmentType) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO appointment_type (appointment_type_id, appointment_type_name) VALUES((?), (?))";
         try(PreparedStatement ps = connection.prepareStatement(query)){
@@ -78,8 +78,6 @@ public class AppointmentTypeDAO implements IAppointmentTypeDAO {
                 }
             }
         }
-
-        return appointmentType;
     }
 
     @Override

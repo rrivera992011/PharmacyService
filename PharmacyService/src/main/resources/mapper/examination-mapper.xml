@@ -1,0 +1,39 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.pharmacyservice.sql.IExaminationDAO">
+    <resultMap type="Examination" id="ExaminationResultMap" autoMapping="false">
+        <result property="examinationId" column="examination_id"/>
+        <result property="examResult" column="exam_result"/>
+        <result property="employeeId" column="employee_id"/>
+        <result property="examinationTypeId" column="examination_type_id"/>
+        <result property="customerId" column="customer_id"/>
+    </resultMap>
+    <insert id="createEntity" keyProperty="examination_id">
+        INSERT INTO examination (examination_id, exam_result, employee_id, examination_type_id, customer_id)
+        VALUES (#{examinationId}, #{examResult}, #{employeeId}, #{examinationTypeId}, #{customerId});
+    </insert>
+    <update id="updateEntity" parameterType = "Examination">
+        UPDATE examination SET
+        exam_result = #{examResult},
+        employee_id = #{employeeId},
+        examination_type_id = #{examinationTypeId},
+        customer_id = #{customerId}
+        WHERE examination_id = #{examinationId};
+    </update>
+    <delete id = "removeEntity" parameterType = "int">
+        DELETE from examination WHERE examination_id = #{id};
+    </delete>
+    <select id = "getEntityById" parameterType = "int" resultMap = "ExaminationResultMap">
+        SELECT * FROM examination WHERE examination_id = #{id};
+    </select>
+    <select id = "getAll" resultMap = "ExaminationResultMap">
+        SELECT * FROM examination;
+    </select>
+    <select id = "getExaminationByResult" parameterType = "String" resultMap = "ExaminationResultMap">
+        SELECT * FROM examination WHERE exam_result = #{examResult};
+    </select>
+</mapper>

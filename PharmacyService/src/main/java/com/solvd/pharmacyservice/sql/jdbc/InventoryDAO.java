@@ -37,7 +37,7 @@ public class InventoryDAO implements IInventoryDAO {
     }
 
     @Override
-    public Inventory createEntity(Inventory inventory) {
+    public void createEntity(Inventory inventory) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO inventory (inventory_id, medicine_name, amount_left, amount_taken, category_id," +
                 " price_of_medicine) VALUES((?), (?), (?), (?), (?), (?))";
@@ -60,7 +60,6 @@ public class InventoryDAO implements IInventoryDAO {
                 }
             }
         }
-        return inventory;
     }
 
     @Override

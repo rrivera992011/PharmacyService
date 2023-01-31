@@ -33,7 +33,7 @@ public class EmployeeTypeDAO implements IEmployeeTypeDAO {
     }
 
     @Override
-    public EmployeeType createEntity(EmployeeType employeeType) {
+    public void createEntity(EmployeeType employeeType) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO employee_type (employee_type_id, employee_type_name) VALUES((?), (?))";
         try(PreparedStatement ps = connection.prepareStatement(query)){
@@ -51,7 +51,6 @@ public class EmployeeTypeDAO implements IEmployeeTypeDAO {
                 }
             }
         }
-        return employeeType;
     }
 
     @Override

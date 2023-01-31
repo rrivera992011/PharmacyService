@@ -40,7 +40,7 @@ public class PrescriptionDAO implements IPrescriptionDAO {
     }
 
     @Override
-    public Prescription createEntity(Prescription prescription) {
+    public void createEntity(Prescription prescription) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO prescription (prescription_id, rx_number, price_of_prescription, " +
                 "amount_of_medicine, date_filled, customer_id, inventory_id, recipe_id) VALUES((?), (?), " +
@@ -66,7 +66,6 @@ public class PrescriptionDAO implements IPrescriptionDAO {
                 }
             }
         }
-        return prescription;
     }
 
     @Override
@@ -193,7 +192,7 @@ public class PrescriptionDAO implements IPrescriptionDAO {
     }
 
     @Override
-    public Prescription getPrescriptionByCustomerId(int customerId) {
+    public Prescription getPrescriptionByCustomerID(int customerId) {
         Connection connection = connectionPool.getConnection();
         Prescription prescription = new Prescription();
         String query = "SELECT * FROM prescription WHERE customer_id = (?)";

@@ -69,7 +69,7 @@ public class AppointmentDAO implements IAppointmentDAO {
     }
 
     @Override
-    public Appointment createEntity(Appointment appointment) {
+    public void createEntity(Appointment appointment) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO appointment (appointment_id, appointment_date, customer_id, employee_id, " +
                 "appointment_type_id) VALUES((?), (?), (?), (?), (?))";
@@ -91,8 +91,6 @@ public class AppointmentDAO implements IAppointmentDAO {
                 }
             }
         }
-
-        return appointment;
     }
 
     @Override
@@ -148,7 +146,7 @@ public class AppointmentDAO implements IAppointmentDAO {
     }
 
     @Override
-    public Appointment getAppointmentByCustomerId(int customerId) {
+    public Appointment getAppointmentByCustomerID(int customerId) {
         Connection connection = connectionPool.getConnection();
         Appointment appointment = new Appointment();
         String query = "SELECT * FROM appointment WHERE customer_id = (?)";

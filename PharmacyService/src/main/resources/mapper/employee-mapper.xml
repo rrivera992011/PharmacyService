@@ -1,0 +1,44 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.pharmacyservice.sql.IEmployeeDAO">
+    <resultMap type="Employee" id="EmployeeResultMap" autoMapping="false">
+        <result property="employeeId" column="employee_id"/>
+        <result property="firstName" column="first_name"/>
+        <result property="lastName" column="last_name"/>
+        <result property="employeeNumber" column="employee_number"/>
+        <result property="employeeTypeId" column="employee_type_id"/>
+    </resultMap>
+    <insert id="createEntity" keyProperty="employee_id">
+        INSERT INTO employee (employee_id, first_name, last_name, employee_number, employee_type_id)
+        VALUES (#{employeeId}, #{firstName}, #{lastName}, #{employeeNumber}, #{employeeTypeId});
+    </insert>
+    <update id="updateEntity" parameterType = "Employee">
+        UPDATE employee SET
+        first_name = #{firstName},
+        last_name = #{lastName},
+        employee_number = #{employeeNumber},
+        employee_type_id = #{employeeTypeId}
+        WHERE employee_type_id = #{employeeTypeId};
+    </update>
+    <delete id = "removeEntity" parameterType = "int">
+        DELETE from employee WHERE employee_id = #{id};
+    </delete>
+    <select id = "getEntityById" parameterType = "int" resultMap = "EmployeeResultMap">
+        SELECT * FROM employee WHERE employee_id = #{id};
+    </select>
+    <select id = "getAll" resultMap = "EmployeeResultMap">
+        SELECT * FROM employee;
+    </select>
+    <update id = "updateEmployeeTypeIDWithLastName" parameterType = "String">
+        UPDATE employee SET
+        employee_type_id = #{employeeTypeId}
+        first_name = #{firstName},
+        employee_number = #{employeeNumber},
+        employee_type_id = #{employeeTypeId}
+        WHERE last_name = #{lastName};
+    </update>
+</mapper>

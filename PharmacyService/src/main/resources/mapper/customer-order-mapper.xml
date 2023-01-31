@@ -1,0 +1,41 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.pharmacyservice.sql.ICustomerOrderDAO">
+    <resultMap type="CustomerOrder" id="CustomerOrderResultMap" autoMapping="false">
+        <result property="customerOrderId" column="customer_order_id"/>
+        <result property="orderTotal" column="order_total"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="orderDate" column="order_date"/>
+        <result property="paymentTypeId" column="payment_type_id"/>
+        <result property="productId" column="product_id"/>
+    </resultMap>
+    <insert id="createEntity" keyProperty="customer_order_id">
+        INSERT INTO customer_order (customer_order_id, order_total, customer_id, order_date, payment_type_id, product_id)
+        VALUES (#{customerOrderId}, #{orderTotal}, #{customerId}, #{orderDate}, #{paymentTypeId}, #{productId});
+    </insert>
+    <update id="updateEntity" parameterType = "CustomerOrder">
+        UPDATE customer_order SET
+        order_total = #{orderTotal},
+        customer_id = #{customerId},
+        order_date = #{orderDate},
+        payment_type_id = #{paymentTypeId},
+        product_id = #{productId}
+        WHERE customer_order_id = #{customerOrderId};
+    </update>
+    <delete id = "removeEntity" parameterType = "int">
+        DELETE from customer_order WHERE customer_order_id = #{id};
+    </delete>
+    <select id = "getEntityById" parameterType = "int" resultMap = "CustomerOrderResultMap">
+        SELECT * FROM customer_order WHERE customer_order_id = #{id};
+    </select>
+    <select id = "getAll" resultMap = "CustomerOrderResultMap">
+        SELECT * FROM customer_order;
+    </select>
+    <select id = "getCustomerOrderByProductID" parameterType = "int" resultMap = "CustomerOrderResultMap">
+        SELECT * FROM customer_order WHERE product_id = #{productId};
+    </select>
+</mapper>

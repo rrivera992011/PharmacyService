@@ -31,7 +31,7 @@ public class CategoryDAO implements ICategoryDAO {
     }
 
     @Override
-    public Category createEntity(Category category) {
+    public void createEntity(Category category) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO category (category_id, category_name) VALUES((?), (?))";
         try(PreparedStatement ps = connection.prepareStatement(query)){
@@ -49,7 +49,6 @@ public class CategoryDAO implements ICategoryDAO {
                 }
             }
         }
-        return category;
     }
 
     @Override

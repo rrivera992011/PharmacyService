@@ -4,5 +4,5 @@ import com.solvd.pharmacyservice.models.Prescription;
 
 public interface IPrescriptionDAO extends IBaseDAO<Prescription>{
     Prescription getPrescriptionByRxNumber(String rxNumber);
-    Prescription getPrescriptionByCustomerId(int customerId);
+    Prescription getPrescriptionByCustomerID(int customerId);
 }

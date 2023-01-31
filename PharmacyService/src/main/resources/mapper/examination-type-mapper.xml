@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.pharmacyservice.sql.IExaminationTypeDAO">
+    <resultMap type="ExaminationType" id="ExaminationTypeResultMap" autoMapping="false">
+        <result property="examinationTypeId" column="examination_type_id"/>
+        <result property="examinationTypeName" column="examination_type_name"/>
+    </resultMap>
+    <insert id="createEntity" keyProperty="examination_type_id">
+        INSERT INTO examination_type (examination_type_id, examination_type_name)
+        VALUES (#{examinationTypeId}, #{examinationTypeName});
+    </insert>
+    <update id="updateEntity" parameterType = "ExaminationType">
+        UPDATE examination_type SET
+        examination_type_name = #{examinationTypeName}
+        WHERE examination_type_id = #{examinationTypeId};
+    </update>
+    <delete id = "removeEntity" parameterType = "int">
+        DELETE from examination_type WHERE examination_type_id = #{id};
+    </delete>
+    <select id = "getEntityById" parameterType = "int" resultMap = "ExaminationTypeResultMap">
+        SELECT * FROM examination_type WHERE examination_type_id = #{id};
+    </select>
+    <select id = "getAll" resultMap = "ExaminationTypeResultMap">
+        SELECT * FROM examination_type;
+    </select>
+    <select id = "getExaminationTypeByName" parameterType = "String" resultMap = "ExaminationTypeResultMap">
+        SELECT * FROM examination_type WHERE examination_type_name = #{examinationTypeName};
+    </select>
+</mapper>

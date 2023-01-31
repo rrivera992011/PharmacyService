@@ -33,7 +33,7 @@ public class ExaminationTypeDAO implements IExaminationTypeDAO {
     }
 
     @Override
-    public ExaminationType createEntity(ExaminationType examinationType) {
+    public void createEntity(ExaminationType examinationType) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO examination_type (examination_type_id, examination_type_name) VALUES((?), (?))";
         try(PreparedStatement ps = connection.prepareStatement(query)){
@@ -51,7 +51,6 @@ public class ExaminationTypeDAO implements IExaminationTypeDAO {
                 }
             }
         }
-        return examinationType;
     }
 
     @Override

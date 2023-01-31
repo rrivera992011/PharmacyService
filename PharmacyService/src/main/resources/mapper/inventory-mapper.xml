@@ -1,0 +1,44 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.pharmacyservice.sql.IInventoryDAO">
+    <resultMap type="Inventory" id="InventoryResultMap" autoMapping="false">
+        <result property="inventoryId" column="inventory_id"/>
+        <result property="medicineName" column="medicine_name"/>
+        <result property="amountLeft" column="amount_left"/>
+        <result property="amountTaken" column="amount_taken"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="priceOfMedicine" column="price_of_medicine"/>
+    </resultMap>
+    <insert id="createEntity" keyProperty="inventory_id">
+        INSERT INTO inventory (inventory_id, medicine_name, amount_left, amount_taken, category_id, price_of_medicine)
+        VALUES (#{inventoryId}, #{medicineName}, #{amountLeft}, #{amountTaken}, #{categoryId}, #{priceOfMedicine});
+    </insert>
+    <update id="updateEntity" parameterType = "Inventory">
+        UPDATE inventory SET
+        medicine_name = #{medicineName},
+        amount_left = #{amountLeft},
+        amount_taken = #{amountTaken},
+        category_id = #{categoryId},
+        price_of_medicine = #{priceOfMedicine}
+        WHERE inventory_id = #{inventoryId};
+    </update>
+    <delete id = "removeEntity" parameterType = "int">
+        DELETE from inventory WHERE inventory_id = #{id};
+    </delete>
+    <select id = "getEntityById" parameterType = "int" resultMap = "InventoryResultMap">
+        SELECT * FROM inventory WHERE inventory_id = #{id};
+    </select>
+    <select id = "getAll" resultMap = "InventoryResultMap">
+        SELECT * FROM inventory;
+    </select>
+    <select id = "getInventoryByMedicineName" parameterType = "String" resultMap = "InventoryResultMap">
+        SELECT * FROM inventory WHERE medicine_name = #{medicineName};
+    </select>
+    <delete id = "removeInventoryWithAmountLeft" parameterType = "int">
+        DELETE from inventory WHERE amount_left = #{amountLeft};
+    </delete>
+</mapper>

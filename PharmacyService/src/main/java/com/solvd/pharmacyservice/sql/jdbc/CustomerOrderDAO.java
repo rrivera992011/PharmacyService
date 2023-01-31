@@ -4,7 +4,6 @@ import com.solvd.pharmacyservice.models.CustomerOrder;
 import com.solvd.pharmacyservice.sql.*;
 import org.apache.logging.log4j.*;
 import java.sql.*;
-import java.sql.Date;
 import java.util.*;
 
 public class CustomerOrderDAO implements ICustomerOrderDAO {
@@ -38,7 +37,7 @@ public class CustomerOrderDAO implements ICustomerOrderDAO {
     }
 
     @Override
-    public CustomerOrder createEntity(CustomerOrder customerOrder) {
+    public void createEntity(CustomerOrder customerOrder) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO customer_order (customer_order_id, order_total, customer_id, order_date, " +
                 "payment_type_id, product_id) VALUES((?), (?), (?), (?), (?), (?))";
@@ -61,8 +60,6 @@ public class CustomerOrderDAO implements ICustomerOrderDAO {
                 }
             }
         }
-
-        return customerOrder;
     }
 
     @Override

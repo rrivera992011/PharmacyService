@@ -43,16 +43,27 @@ DELETE FROM recipe;
 DELETE FROM payment_type;
 DELETE FROM prescription;
 
+SELECT * FROM customer_order;
 SELECT * FROM customer;
 SELECT * FROM employee;
+SELECT * FROM employee_type;
+SELECT * FROM examination;
+SELECT * FROM examination_type;
+SELECT * FROM category;
+SELECT * FROM appointment;
 SELECT * FROM appointment_type;
+SELECT * FROM inventory;
+SELECT * FROM recipe;
+SELECT * FROM payment_type;
+SELECT * FROM prescription;
 
 -- Delete commands --
 DELETE FROM category WHERE category_name = 'Pizza';
 DELETE FROM category WHERE category_name = 'Antibiotic';
-DELETE FROM customer WHERE age = 22;
+DELETE FROM customer WHERE age = 23;
 DELETE FROM employee;
 DELETE FROM employee_type;
+DELETE FROM customer;
 DELETE FROM employee WHERE employee_id = 1;
 DELETE FROM employee_type WHERE employee_type_id = 1;
 DELETE FROM appointment_type;

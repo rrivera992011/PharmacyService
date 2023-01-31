@@ -33,7 +33,7 @@ public class PaymentTypeDAO implements IPaymentTypeDAO {
     }
 
     @Override
-    public PaymentType createEntity(PaymentType paymentType) {
+    public void createEntity(PaymentType paymentType) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO payment_type (payment_type_id, payment_type_name) VALUES((?), (?))";
         try(PreparedStatement ps = connection.prepareStatement(query)){
@@ -51,7 +51,6 @@ public class PaymentTypeDAO implements IPaymentTypeDAO {
                 }
             }
         }
-        return paymentType;
     }
 
     @Override

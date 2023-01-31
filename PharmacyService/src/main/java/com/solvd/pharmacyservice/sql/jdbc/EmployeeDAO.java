@@ -36,7 +36,7 @@ public class EmployeeDAO implements IEmployeeDAO {
     }
 
     @Override
-    public Employee createEntity(Employee employee) {
+    public void createEntity(Employee employee) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO employee (employee_id, first_name, last_name, employee_number, employee_type_id)" +
                 " VALUES((?), (?), (?), (?), (?))";
@@ -58,7 +58,6 @@ public class EmployeeDAO implements IEmployeeDAO {
                 }
             }
         }
-        return employee;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class RecipeDAO implements IRecipeDAO {
     }
 
     @Override
-    public Recipe createEntity(Recipe recipe) {
+    public void createEntity(Recipe recipe) {
         Connection connection = connectionPool.getConnection();
         String query = "INSERT INTO recipe (recipe_id, recipe_size) VALUES((?), (?))";
         try(PreparedStatement ps = connection.prepareStatement(query)){
@@ -51,7 +51,6 @@ public class RecipeDAO implements IRecipeDAO {
                 }
             }
         }
-        return recipe;
     }
 
     @Override

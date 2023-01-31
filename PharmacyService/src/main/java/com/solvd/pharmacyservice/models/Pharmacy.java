@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.*;
 import java.util.List;
 
 @XmlRootElement(name = "pharmacy")
-@XmlType(propOrder = {"customerList", "employeeTypeList", "employeeList", "appointmentTypeList", "examinationTypeList",
+@XmlType(propOrder = {"id", "name", "customerList", "employeeTypeList", "employeeList", "appointmentTypeList", "examinationTypeList",
 "paymentTypeList", "recipeList", "categoryList", "inventoryList", "examinationList"})
 public class Pharmacy {
     private int id;
@@ -64,6 +64,7 @@ public class Pharmacy {
         return id;
     }
 
+    @XmlElement (name = "id")
     public void setId(int id) {
         this.id = id;
     }
@@ -72,6 +73,7 @@ public class Pharmacy {
         return name;
     }
 
+    @XmlElement (name = "name")
     public void setName(String name) {
         this.name = name;
     }
