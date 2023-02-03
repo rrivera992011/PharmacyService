@@ -1,0 +1,52 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db.properties"/>
+    <typeAliases>
+        <typeAlias alias="Customer" type="com.solvd.pharmacyservice.models.Customer"/>
+        <typeAlias alias="CustomerOrder" type="com.solvd.pharmacyservice.models.CustomerOrder"/>
+        <typeAlias alias="Appointment" type="com.solvd.pharmacyservice.models.Appointment"/>
+        <typeAlias alias="AppointmentType" type="com.solvd.pharmacyservice.models.AppointmentType"/>
+        <typeAlias alias="Category" type="com.solvd.pharmacyservice.models.Category"/>
+        <typeAlias alias="Recipe" type="com.solvd.pharmacyservice.models.Recipe"/>
+        <typeAlias alias="PaymentType" type="com.solvd.pharmacyservice.models.PaymentType"/>
+        <typeAlias alias="Examination" type="com.solvd.pharmacyservice.models.Examination"/>
+        <typeAlias alias="ExaminationType" type="com.solvd.pharmacyservice.models.ExaminationType"/>
+        <typeAlias alias="Employee" type="com.solvd.pharmacyservice.models.Employee"/>
+        <typeAlias alias="EmployeeType" type="com.solvd.pharmacyservice.models.EmployeeType"/>
+        <typeAlias alias="Prescription" type="com.solvd.pharmacyservice.models.Prescription"/>
+        <typeAlias alias="Inventory" type="com.solvd.pharmacyservice.models.Inventory"/>
+    </typeAliases>
+    <environments default = "development">
+        <environment id = "development">
+            <transactionManager type = "JDBC"/>
+
+            <dataSource type = "POOLED">
+                <property name = "driver" value = "${driver}"/>
+                <property name = "url" value = "${url}"/>
+                <property name = "username" value = "${user}"/>
+                <property name = "password" value = "${password}"/>
+            </dataSource>
+
+        </environment>
+    </environments>
+    <mappers>
+       <mapper resource="mapper/customer-mapper.xml"/>
+       <mapper resource="mapper/customer-order-mapper.xml"/>
+       <mapper resource="mapper/appointment-mapper.xml"/>
+       <mapper resource="mapper/appointment-type-mapper.xml"/>
+       <mapper resource="mapper/category-mapper.xml"/>
+       <mapper resource="mapper/payment-type-mapper.xml"/>
+       <mapper resource="mapper/examination-type-mapper.xml"/>
+       <mapper resource="mapper/recipe-mapper.xml"/>
+       <mapper resource="mapper/employee-mapper.xml"/>
+       <mapper resource="mapper/employee-type-mapper.xml"/>
+       <mapper resource="mapper/examination-mapper.xml"/>
+       <mapper resource="mapper/prescription-mapper.xml"/>
+       <mapper resource="mapper/inventory-mapper.xml"/>
+    </mappers>
+
+</configuration>

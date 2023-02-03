@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.pharmacyservice.sql.IPrescriptionDAO">
+    <resultMap type="Prescription" id="PrescriptionResultMap" autoMapping="false">
+        <result property="prescriptionId" column="prescription_id"/>
+        <result property="rxNumber" column="rx_number"/>
+        <result property="priceOfPrescription" column="price_of_prescription"/>
+        <result property="amountOfMedicine" column="amount_of_medicine"/>
+        <result property="dateFilled" column="date_filled"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="inventoryId" column="inventory_id"/>
+        <result property="recipeId" column="recipe_id"/>
+    </resultMap>
+    <insert id="createEntity" keyProperty="prescription_id">
+        INSERT INTO prescription (prescription_id, rx_number, price_of_prescription, amount_of_medicine, date_filled,
+        customer_id, inventory_id, recipe_id) VALUES (#{prescriptionId}, #{rxNumber}, #{priceOfPrescription},
+        #{amountOfMedicine}, #{dateFilled}, #{customerId}, #{inventoryId}, #{recipeId});
+    </insert>
+    <update id="updateEntity" parameterType = "Prescription">
+        UPDATE prescription SET
+        rx_number = #{rxNumber},
+        price_of_prescription = #{priceOfPrescription},
+        amount_of_medicine = #{amountOfMedicine},
+        date_filled = #{dateFilled},
+        customer_id = #{customerId},
+        inventory_id = #{inventoryId},
+        recipe_id = #{recipeId}
+        WHERE prescription_id = #{prescriptionId};
+    </update>
+    <delete id = "removeEntity" parameterType = "int">
+        DELETE from prescription WHERE prescription_id = #{id};
+    </delete>
+    <select id = "getEntityById" parameterType = "int" resultMap = "PrescriptionResultMap">
+        SELECT * FROM prescription WHERE prescription_id = #{id};
+    </select>
+    <select id = "getAll" resultMap = "PrescriptionResultMap">
+        SELECT * FROM prescription;
+    </select>
+    <select id = "getPrescriptionByRxNumber" parameterType = "String" resultMap = "PrescriptionResultMap">
+        SELECT * FROM prescription WHERE rx_number = #{rxNumber};
+    </select>
+    <select id = "getPrescriptionByCustomerID" parameterType = "int" resultMap = "PrescriptionResultMap">
+        SELECT * FROM prescription WHERE customer_id = #{customerId};
+    </select>
+</mapper>

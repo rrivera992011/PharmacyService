@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.pharmacyservice.sql.IPaymentTypeDAO">
+    <resultMap type="PaymentType" id="PaymentTypeResultMap" autoMapping="false">
+        <result property="paymentTypeId" column="payment_type_id"/>
+        <result property="paymentTypeName" column="payment_type_name"/>
+    </resultMap>
+    <insert id="createEntity" keyProperty="payment_type_id">
+        INSERT INTO payment_type (payment_type_id, payment_type_name)
+        VALUES (#{paymentTypeId}, #{paymentTypeName});
+    </insert>
+    <update id="updateEntity" parameterType = "PaymentType">
+        UPDATE payment_type SET
+        payment_type_name = #{paymentTypeName}
+        WHERE payment_type_id = #{paymentTypeId};
+    </update>
+    <delete id = "removeEntity" parameterType = "int">
+        DELETE from payment_type WHERE payment_type_id = #{id};
+    </delete>
+    <select id = "getEntityById" parameterType = "int" resultMap = "PaymentTypeResultMap">
+        SELECT * FROM payment_type WHERE payment_type_id = #{id};
+    </select>
+    <select id = "getAll" resultMap = "PaymentTypeResultMap">
+        SELECT * FROM payment_type;
+    </select>
+    <select id = "getPaymentTypeByName" parameterType = "String" resultMap = "PaymentTypeResultMap">
+        SELECT * FROM payment_type WHERE payment_type_name = #{paymentTypeName};
+    </select>
+</mapper>

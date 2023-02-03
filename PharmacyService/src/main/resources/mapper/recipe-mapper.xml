@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.pharmacyservice.sql.IRecipeDAO">
+    <resultMap type="Recipe" id="RecipeResultMap" autoMapping="false">
+        <result property="recipeId" column="recipe_id"/>
+        <result property="recipeSize" column="recipe_size"/>
+    </resultMap>
+    <insert id="createEntity" keyProperty="recipe_id">
+        INSERT INTO recipe (recipe_id, recipe_size)
+        VALUES (#{recipeId}, #{recipeSize});
+    </insert>
+    <update id="updateEntity" parameterType = "Recipe">
+        UPDATE recipe SET
+        recipe_size = #{recipeSize}
+        WHERE recipe_id = #{recipeId};
+    </update>
+    <delete id = "removeEntity" parameterType = "int">
+        DELETE from recipe WHERE recipe_id = #{id};
+    </delete>
+    <select id = "getEntityById" parameterType = "int" resultMap = "RecipeResultMap">
+        SELECT * FROM recipe WHERE recipe_id = #{id};
+    </select>
+    <select id = "getAll" resultMap = "RecipeResultMap">
+        SELECT * FROM recipe;
+    </select>
+    <select id = "getRecipeFromRecipeSize" parameterType = "double" resultMap = "RecipeResultMap">
+        SELECT * FROM recipe WHERE recipe_size = #{recipeSize};
+    </select>
+</mapper>

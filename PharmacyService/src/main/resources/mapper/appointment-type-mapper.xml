@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.pharmacyservice.sql.IAppointmentTypeDAO">
+    <resultMap type="AppointmentType" id="AppointmentTypeResultMap" autoMapping="false">
+        <result property="appointmentTypeId" column="appointment_type_id"/>
+        <result property="appointmentTypeName" column="appointment_type_name"/>
+    </resultMap>
+    <insert id="createEntity" keyProperty="appointment_type_id">
+        INSERT INTO appointment_type (appointment_type_id, appointment_type_name)
+        VALUES (#{appointmentTypeId}, #{appointmentTypeName});
+    </insert>
+    <update id="updateEntity" parameterType = "AppointmentType">
+        UPDATE appointment_type SET
+        appointment_type_name = #{appointmentTypeName}
+        WHERE appointment_type_id = #{appointmentTypeId};
+    </update>
+    <delete id = "removeEntity" parameterType = "int">
+        DELETE from appointment_type WHERE appointment_type_id = #{id};
+    </delete>
+    <select id = "getEntityById" parameterType = "int" resultMap = "AppointmentTypeResultMap">
+        SELECT * FROM appointment_type WHERE appointment_type_id = #{id};
+    </select>
+    <select id = "getAll" resultMap = "AppointmentTypeResultMap">
+        SELECT * FROM appointment_type;
+    </select>
+    <select id = "getAppointmentTypeByName" parameterType = "String" resultMap = "AppointmentTypeResultMap">
+        SELECT * FROM appointment_type WHERE appointment_type_name = #{appointmentTypeName};
+    </select>
+</mapper>
