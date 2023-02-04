@@ -2,6 +2,7 @@ package com.solvd.pharmacyservice.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.solvd.pharmacyservice.models.builders.CustomerBuilder;
 
 import javax.xml.bind.annotation.*;
 import java.util.Date;
@@ -36,6 +37,15 @@ public class Customer {
     }
 
     public Customer() {
+    }
+
+    public Customer(CustomerBuilder customerBuilder) {
+        this.customerId = customerBuilder.customerId;
+        this.firstName = customerBuilder.firstName;
+        this.lastName = customerBuilder.lastName;
+        this.phoneNumber = customerBuilder.phoneNumber;
+        this.age = customerBuilder.age;
+        this.address = customerBuilder.address;
     }
 
     public int getCustomerId() {
