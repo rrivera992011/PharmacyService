@@ -1,6 +1,7 @@
 package com.solvd.pharmacyservice.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.solvd.pharmacyservice.models.builders.AppointmentTypeBuilder;
 
 import javax.xml.bind.annotation.*;
 
@@ -19,6 +20,11 @@ public class AppointmentType {
 
     public AppointmentType() {
 
+    }
+
+    public AppointmentType(AppointmentTypeBuilder appointmentTypeBuilder) {
+        this.appointmentTypeId = appointmentTypeBuilder.getAppointmentTypeId();
+        this.appointmentTypeName = appointmentTypeBuilder.getAppointmentTypeName();
     }
 
     public int getAppointmentTypeId() {

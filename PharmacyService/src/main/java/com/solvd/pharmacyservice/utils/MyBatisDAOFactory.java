@@ -11,6 +11,8 @@ public class MyBatisDAOFactory extends AbstractDAOFactory{
                 return new AppointmentDAO();
             case "appointmentType":
                 return new AppointmentTypeDAO();
+            case "category":
+                return new CategoryDAO();
             case "customer":
                 return new CustomerDAO();
             case "customerOrder":

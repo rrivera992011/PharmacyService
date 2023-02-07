@@ -1,6 +1,7 @@
 package com.solvd.pharmacyservice.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.solvd.pharmacyservice.models.builders.ExaminationBuilder;
 
 import javax.xml.bind.annotation.*;
 
@@ -27,6 +28,14 @@ public class Examination {
     }
 
     public Examination() {
+    }
+
+    public Examination(ExaminationBuilder examinationBuilder) {
+        this.examinationId = examinationBuilder.getExaminationId();
+        this.examResult = examinationBuilder.getExamResult();
+        this.employeeId = examinationBuilder.getEmployeeId();
+        this.examinationTypeId = examinationBuilder.getExaminationTypeId();
+        this.customerId = examinationBuilder.getCustomerId();
     }
 
     public int getExaminationId() {

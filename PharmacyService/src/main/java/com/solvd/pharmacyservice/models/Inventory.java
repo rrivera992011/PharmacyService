@@ -1,6 +1,7 @@
 package com.solvd.pharmacyservice.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.solvd.pharmacyservice.models.builders.InventoryBuilder;
 
 import javax.xml.bind.annotation.*;
 
@@ -30,6 +31,15 @@ public class Inventory {
     }
 
     public Inventory() {
+    }
+
+    public Inventory(InventoryBuilder inventoryBuilder) {
+        this.inventoryId = inventoryBuilder.getInventoryId();
+        this.medicineName = inventoryBuilder.getMedicineName();
+        this.amountLeft = inventoryBuilder.getAmountLeft();
+        this.amountTaken = inventoryBuilder.getAmountTaken();
+        this.categoryId = inventoryBuilder.getCategoryId();
+        this.priceOfMedicine = inventoryBuilder.getPriceOfMedicine();
     }
 
     public int getInventoryId() {
@@ -88,7 +98,7 @@ public class Inventory {
 
     @Override
     public String toString() {
-        return "\nInventory ID = " + inventoryId +
+        return "\nInventoryBuilder ID = " + inventoryId +
                 ", Medicine Name = '" + medicineName + '\'' +
                 ", Amount Left = " + amountLeft +
                 ", Amount Taken = " + amountTaken +

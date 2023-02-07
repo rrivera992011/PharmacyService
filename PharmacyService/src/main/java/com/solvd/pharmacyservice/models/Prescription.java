@@ -1,5 +1,7 @@
 package com.solvd.pharmacyservice.models;
 
+import com.solvd.pharmacyservice.models.builders.PrescriptionBuilder;
+
 import java.sql.Date;
 
 public class Prescription {
@@ -25,6 +27,17 @@ public class Prescription {
     }
 
     public Prescription() {
+    }
+
+    public Prescription(PrescriptionBuilder prescriptionBuilder) {
+        this.prescriptionId = prescriptionBuilder.getPrescriptionId();
+        this.rxNumber = prescriptionBuilder.getRxNumber();
+        this.priceOfPrescription = prescriptionBuilder.getPriceOfPrescription();
+        this.amountOfMedicine = prescriptionBuilder.getAmountOfMedicine();
+        this.dateFilled = prescriptionBuilder.getDateFilled();
+        this.customerId = prescriptionBuilder.getCustomerId();
+        this.inventoryId = prescriptionBuilder.getInventoryId();
+        this.recipeId = prescriptionBuilder.getRecipeId();
     }
 
     public int getPrescriptionId() {
@@ -99,7 +112,7 @@ public class Prescription {
                 ", Amount Of Medicine = " + amountOfMedicine +
                 ", Date Filled = " + dateFilled +
                 ", Customer ID = " + customerId +
-                ", Inventory ID = " + inventoryId +
+                ", InventoryBuilder ID = " + inventoryId +
                 ", Recipe ID = " + recipeId;
     }
 }

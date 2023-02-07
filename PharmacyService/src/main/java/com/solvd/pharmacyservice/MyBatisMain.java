@@ -1,7 +1,7 @@
 package com.solvd.pharmacyservice;
 
 import com.solvd.pharmacyservice.models.*;
-import com.solvd.pharmacyservice.models.builders.CustomerBuilder;
+import com.solvd.pharmacyservice.models.builders.*;
 import com.solvd.pharmacyservice.sql.IBaseDAO;
 import com.solvd.pharmacyservice.sql.mybatis.*;
 import com.solvd.pharmacyservice.utils.DBFactoryGenerator;
@@ -17,23 +17,20 @@ public class MyBatisMain {
     final static Level MENU_LOG = Level.forName("MENU_LOG", 700);
 
     public static void main(String[] args) {
-        AppointmentTypeDAO appointmentTypeDAO = new AppointmentTypeDAO();
-        CategoryDAO categoryDAO = new CategoryDAO();
+        IBaseDAO appointmentTypeDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("appointmentType");
+        IBaseDAO categoryDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("category");
         IBaseDAO customerDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("customer");
-        // CustomerDAO customerDAO = new CustomerDAO();
-        CustomerOrderDAO customerOrderDAO = new CustomerOrderDAO();
-        EmployeeDAO employeeDAO = new EmployeeDAO();
-        EmployeeTypeDAO employeeTypeDAO = new EmployeeTypeDAO();
-        ExaminationDAO examinationDAO = new ExaminationDAO();
-        ExaminationTypeDAO examinationTypeDAO = new ExaminationTypeDAO();
-        InventoryDAO inventoryDAO = new InventoryDAO();
-        PaymentTypeDAO paymentTypeDAO = new PaymentTypeDAO();
-        PrescriptionDAO prescriptionDAO = new PrescriptionDAO();
-        RecipeDAO recipeDAO = new RecipeDAO();
-        AppointmentDAO appointmentDAO = new AppointmentDAO();
+        IBaseDAO customerOrderDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("customerOrder");
+        IBaseDAO employeeDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("employee");
+        IBaseDAO employeeTypeDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("employeeType");
+        IBaseDAO examinationDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("examination");
+        IBaseDAO examinationTypeDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("examinationType");
+        IBaseDAO inventoryDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("inventory");
+        IBaseDAO paymentTypeDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("paymentType");
+        IBaseDAO prescriptionDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("prescription");
+        IBaseDAO recipeDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("recipe");
+        IBaseDAO appointmentDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("appointment");
 
-        /* Customer daniel = new Customer(1, "Daniel", "Andrews","12343234123", 25,
-                "12 Main Ave");*/
         Customer daniel = new CustomerBuilder(1, "Daniel", "Andrews")
                 .withPhoneNumber("12343234123").withAge(25).withAddress("12 Main Ave").build();
         customerDAO.createEntity(daniel);
@@ -42,9 +39,8 @@ public class MyBatisMain {
         List<Customer> customers = customerDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + customers);
         LOGGER.log(MENU_LOG, "Testing out id" + customerDAO.getEntityById(1));
-        // LOGGER.log(MENU_LOG, "Testing out last name" + customerDAO.getCustomerByLastName("Andrews"));
 
-        EmployeeType clerk = new EmployeeType(1, "Clerk");
+        EmployeeType clerk = new EmployeeTypeBuilder(1, "Clerk").build();
         employeeTypeDAO.createEntity(clerk);
         clerk.setEmployeeTypeName("Counter clerk");
         employeeTypeDAO.updateEntity(clerk);
@@ -52,8 +48,8 @@ public class MyBatisMain {
         LOGGER.log(MENU_LOG, "Testing out get all " + employeeTypes);
         LOGGER.log(MENU_LOG, "Testing out id" + employeeTypeDAO.getEntityById(1));
 
-        Employee michael = new Employee(1, "Michael", "Morris",
-                "123443223", 1);
+        Employee michael = new EmployeeBuilder(1, "Michael", "Morris")
+                .withEmployeeNumber("123443223").withEmployeeTypeId(1).build();
         employeeDAO.createEntity(michael);
         michael.setLastName("Adams");
         employeeDAO.updateEntity(michael);
@@ -68,92 +64,79 @@ public class MyBatisMain {
         List<AppointmentType> appointmentTypes = appointmentTypeDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + appointmentTypes);
         LOGGER.log(MENU_LOG, "Testing out id" + appointmentTypeDAO.getEntityById(1));
-        LOGGER.log(MENU_LOG, "Testing out name" +
-                appointmentTypeDAO.getAppointmentTypeByName("Vaccine"));
 
-        ExaminationType covidTest = new ExaminationType(1, "COVID Test");
+        ExaminationType covidTest = new ExaminationTypeBuilder(1, "COVID Test").build();
         examinationTypeDAO.createEntity(covidTest);
         List<ExaminationType> examinationTypes = examinationTypeDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + examinationTypes);
         LOGGER.log(MENU_LOG, "Testing out id" + examinationTypeDAO.getEntityById(1));
-        LOGGER.log(MENU_LOG, "Testing out by name" +
-                examinationTypeDAO.getExaminationTypeByName("COVID Test"));
 
-        PaymentType cash = new PaymentType(1, "Cash");
+        PaymentType cash = new PaymentTypeBuilder(1, "Cash").build();
         paymentTypeDAO.createEntity(cash);
         List<PaymentType> paymentTypes = paymentTypeDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + paymentTypes);
         LOGGER.log(MENU_LOG, "Testing out id" + paymentTypeDAO.getEntityById(1));
-        LOGGER.log(MENU_LOG, "Testing out id" + paymentTypeDAO.getPaymentTypeByName("Cash"));
 
-        Recipe levofloxacin = new Recipe(1, 20);
+        Recipe levofloxacin = new RecipeBuilder(1, 20).build();
         recipeDAO.createEntity(levofloxacin);
         levofloxacin.setRecipeSize(50);
         List<Recipe> recipes = recipeDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + recipes);
         LOGGER.log(MENU_LOG, "Testing out id" + recipeDAO.getEntityById(1));
-        LOGGER.log(MENU_LOG, "Testing out id" + recipeDAO.getRecipeFromRecipeSize(50));
 
-        Category antibiotic = new Category(1, "Antibiotic");
+        Category antibiotic = new CategoryBuilder(1, "Antibiotic").build();
         categoryDAO.createEntity(antibiotic);
         antibiotic.setCategoryName("Antibiotics");
         categoryDAO.updateEntity(antibiotic);
         List<Category> categories = categoryDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + categories);
         LOGGER.log(MENU_LOG, "Testing out id" + categoryDAO.getEntityById(1));
-        LOGGER.log(MENU_LOG, "Testing out name" + categoryDAO.getCategoryByName("Antibiotics"));
 
-        Inventory advil = new Inventory(1, "Advil", 2, 100,
-                1, 8.25);
+        Inventory advil = new InventoryBuilder(1, "Advil").withAmountLeft(100).withAmountTaken(2)
+                .withCategoryId(1).withPriceOfMedicine(8.25).build();
         inventoryDAO.createEntity(advil);
         advil.setPriceOfMedicine(13.99);
         inventoryDAO.updateEntity(advil);
         List<Inventory> inventory = inventoryDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + inventory);
         LOGGER.log(MENU_LOG, "Testing out id" + inventoryDAO.getEntityById(1));
-        LOGGER.log(MENU_LOG, "Testing out medicine name" + inventoryDAO.getInventoryByMedicineName("Advil"));
-        advil.setAmountTaken(98);
-        advil.setAmountLeft(0);
+        advil.setAmountTaken(8);
+        advil.setAmountLeft(92);
         LOGGER.log(MENU_LOG, "Testing out id" + inventoryDAO.getEntityById(1));
-        inventoryDAO.removeInventoryWithAmountLeft(0);
         LOGGER.log(MENU_LOG, "Testing out get all " + inventory);
 
 
-        CustomerOrder orderForDaniel = new CustomerOrder(1, 18.25, 1,
-                Date.valueOf("2022-12-24"), 1, 1);
+        CustomerOrder orderForDaniel = new CustomerOrderBuilder(1, 18.25, 1)
+                .withOrderDate(Date.valueOf("2022-12-24")).withPaymentTypeId(1).withProductId(1).build();
         customerOrderDAO.createEntity(orderForDaniel);
         List<CustomerOrder> customerOrders = customerOrderDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + customerOrders);
         LOGGER.log(MENU_LOG, "Testing out id" + customerOrderDAO.getEntityById(1));
-        LOGGER.log(MENU_LOG, "Testing out id" + customerOrderDAO.getCustomerOrderByProductID(1));
 
-        Prescription prescriptionForDaniel = new Prescription(1, "1234543", 25.13,
-                50, Date.valueOf("2022-12-26"), 1, 1, 1);
+        Prescription prescriptionForDaniel = new PrescriptionBuilder(1, "1234543", 25.13)
+                .withAmountOfMedicine(50).withDateFilled(Date.valueOf("2022-12-26")).withCustomerId(1).withInventoryId(1)
+        .withRecipeId(1).build();
         prescriptionDAO.createEntity(prescriptionForDaniel);
         List<Prescription> prescriptions = prescriptionDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + prescriptions);
         LOGGER.log(MENU_LOG, "Testing out id" + prescriptionDAO.getEntityById(1));
-        LOGGER.log(MENU_LOG, "Testing out id" + prescriptionDAO.getPrescriptionByCustomerID(1));
-        LOGGER.log(MENU_LOG, "Testing out id" + prescriptionDAO.getPrescriptionByRxNumber("1234543"));
 
 
-        Appointment danielAppointment = new Appointment(1, Date.valueOf("2022-12-27"),
-                1, 1, 1);
+        Appointment danielAppointment = new AppointmentBuilder(1, Date.valueOf("2022-12-27"), 1)
+        .withEmployeeId(1).withAppointmentTypeId(1).build();
         appointmentDAO.createEntity(danielAppointment);
         List<Appointment> appointments = appointmentDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + appointments);
         LOGGER.log(MENU_LOG, "Testing out id" + appointmentDAO.getEntityById(1));
-        LOGGER.log(MENU_LOG, "Testing out " + appointmentDAO.getAppointmentByCustomerID(1));
 
-        Examination danielExamination = new Examination(1, "Positive", 1,
-                1, 1);
+        Examination danielExamination = new ExaminationBuilder(1, "Positive", 1)
+                .withExaminationTypeId(1).withCustomerId(1).build();
         examinationDAO.createEntity(danielExamination);
         danielExamination.setExamResult("Negative");
         examinationDAO.updateEntity(danielExamination);
         List<Examination> examinations = examinationDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + examinations);
         LOGGER.log(MENU_LOG, "Testing out id" + examinationDAO.getEntityById(1));
-        LOGGER.log(MENU_LOG, "Testing out " + examinationDAO.getExaminationByResult("Positive"));
 
         examinationDAO.removeEntity(1);
         appointmentDAO.removeEntity(1);

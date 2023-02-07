@@ -2,6 +2,7 @@ package com.solvd.pharmacyservice.models;
 
 import com.fasterxml.jackson.annotation.JsonKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.solvd.pharmacyservice.models.builders.EmployeeTypeBuilder;
 
 import javax.xml.bind.annotation.*;
 
@@ -19,6 +20,11 @@ public class EmployeeType{
     public EmployeeType(int employeeTypeId, String employeeTypeName) {
         this.employeeTypeId = employeeTypeId;
         this.employeeTypeName = employeeTypeName;
+    }
+
+    public EmployeeType(EmployeeTypeBuilder employeeTypeBuilder) {
+        this.employeeTypeId = employeeTypeBuilder.getEmployeeTypeId();
+        this.employeeTypeName = employeeTypeBuilder.getEmployeeTypeName();
     }
 
     public int getEmployeeTypeId() {

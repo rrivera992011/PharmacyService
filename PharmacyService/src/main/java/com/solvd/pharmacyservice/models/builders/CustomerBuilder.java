@@ -5,17 +5,17 @@ import com.solvd.pharmacyservice.models.Customer;
 import java.util.Date;
 
 public class CustomerBuilder {
-    public int customerId;
-    public String firstName;
-    public String lastName;
-    public String phoneNumber;
-    public int age;
-    public Date dateOfBirth;
-    public String address;
+    private int customerId;
+    private String firstName;
+    private String lastName;
+    private String phoneNumber;
+    private int age;
+    private Date dateOfBirth;
+    private String address;
 
     public CustomerBuilder(int customerId, String firstName, String lastName) {
         if (customerId == 0 || (firstName == null) || (lastName == null)) {
-            throw new IllegalArgumentException("Customer ID cannot be zero and name cannot be null");
+            throw new IllegalArgumentException("Customer ID cannot be 0 and First Name and Last Name cannot be null");
         }
 
         this.customerId = customerId;
@@ -47,4 +47,31 @@ public class CustomerBuilder {
         return new Customer(this);
     }
 
+    public int getCustomerId() {
+        return this.customerId;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getLastName() {
+        return this.lastName;
+    }
+
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    public int getAge() {
+        return this.age;
+    }
+
+    public Date getDateOfBirth() {
+        return this.dateOfBirth;
+    }
+
+    public String getAddress() {
+        return this.address;
+    }
 }

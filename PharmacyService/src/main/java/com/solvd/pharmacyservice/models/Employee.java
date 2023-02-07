@@ -1,6 +1,7 @@
 package com.solvd.pharmacyservice.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.solvd.pharmacyservice.models.builders.EmployeeBuilder;
 
 import javax.xml.bind.annotation.*;
 
@@ -27,6 +28,14 @@ public class Employee {
     }
 
     public Employee() {
+    }
+
+    public Employee(EmployeeBuilder employeeBuilder) {
+        this.employeeId = employeeBuilder.getEmployeeId();
+        this.firstName = employeeBuilder.getFirstName();
+        this.lastName = employeeBuilder.getLastName();
+        this.employeeNumber = employeeBuilder.getEmployeeNumber();
+        this.employeeTypeId = employeeBuilder.getEmployeeTypeId();
     }
 
     public int getEmployeeId() {

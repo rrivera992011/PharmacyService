@@ -40,12 +40,12 @@ public class Customer {
     }
 
     public Customer(CustomerBuilder customerBuilder) {
-        this.customerId = customerBuilder.customerId;
-        this.firstName = customerBuilder.firstName;
-        this.lastName = customerBuilder.lastName;
-        this.phoneNumber = customerBuilder.phoneNumber;
-        this.age = customerBuilder.age;
-        this.address = customerBuilder.address;
+        this.customerId = customerBuilder.getCustomerId();
+        this.firstName = customerBuilder.getFirstName();
+        this.lastName = customerBuilder.getLastName();
+        this.phoneNumber = customerBuilder.getPhoneNumber();
+        this.age = customerBuilder.getAge();
+        this.address = customerBuilder.getAddress();
     }
 
     public int getCustomerId() {
