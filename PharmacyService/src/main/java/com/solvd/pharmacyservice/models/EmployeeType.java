@@ -1,6 +1,5 @@
 package com.solvd.pharmacyservice.models;
 
-import com.fasterxml.jackson.annotation.JsonKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.*;

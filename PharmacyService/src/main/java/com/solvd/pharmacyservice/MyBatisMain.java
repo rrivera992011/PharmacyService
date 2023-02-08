@@ -1,7 +1,11 @@
 package com.solvd.pharmacyservice;
 
 import com.solvd.pharmacyservice.models.*;
+import com.solvd.pharmacyservice.models.builders.*;
+import com.solvd.pharmacyservice.sql.IBaseDAO;
 import com.solvd.pharmacyservice.sql.mybatis.*;
+import com.solvd.pharmacyservice.utils.DBFactoryGenerator;
+import com.solvd.pharmacyservice.utils.enums.DBConnectionType;
 import org.apache.logging.log4j.*;
 import java.sql.Date;
 
@@ -15,7 +19,7 @@ public class MyBatisMain {
     public static void main(String[] args) {
         AppointmentTypeDAO appointmentTypeDAO = new AppointmentTypeDAO();
         CategoryDAO categoryDAO = new CategoryDAO();
-        CustomerDAO customerDAO = new CustomerDAO();
+        IBaseDAO customerDAO = DBFactoryGenerator.getFactory(DBConnectionType.MYBATIS).getDAO("customer");
         CustomerOrderDAO customerOrderDAO = new CustomerOrderDAO();
         EmployeeDAO employeeDAO = new EmployeeDAO();
         EmployeeTypeDAO employeeTypeDAO = new EmployeeTypeDAO();
@@ -27,15 +31,14 @@ public class MyBatisMain {
         RecipeDAO recipeDAO = new RecipeDAO();
         AppointmentDAO appointmentDAO = new AppointmentDAO();
 
-        Customer daniel = new Customer(1, "Daniel", "Andrews","12343234123", 25,
-                "12 Main Ave");
+        Customer daniel = new CustomerBuilder(1, "Daniel", "Andrews")
+                .withPhoneNumber("12343234123").withAge(25).withAddress("12 Main Ave").build();
         customerDAO.createEntity(daniel);
         daniel.setAddress("12 East Road");
         customerDAO.updateEntity(daniel);
         List<Customer> customers = customerDAO.getAll();
         LOGGER.log(MENU_LOG, "Testing out get all " + customers);
         LOGGER.log(MENU_LOG, "Testing out id" + customerDAO.getEntityById(1));
-        LOGGER.log(MENU_LOG, "Testing out last name" + customerDAO.getCustomerByLastName("Andrews"));
 
         EmployeeType clerk = new EmployeeType(1, "Clerk");
         employeeTypeDAO.createEntity(clerk);

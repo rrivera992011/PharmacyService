@@ -88,7 +88,7 @@ public class Inventory {
 
     @Override
     public String toString() {
-        return "\nInventory ID = " + inventoryId +
+        return "\nInventoryBuilder ID = " + inventoryId +
                 ", Medicine Name = '" + medicineName + '\'' +
                 ", Amount Left = " + amountLeft +
                 ", Amount Taken = " + amountTaken +

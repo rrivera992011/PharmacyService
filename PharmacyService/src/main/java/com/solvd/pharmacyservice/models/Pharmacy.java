@@ -188,7 +188,7 @@ public class Pharmacy {
                 "\nPayment Type List = " + paymentTypeList +
                 "\nRecipe List = " + recipeList +
                 "\nCategory List = " + categoryList +
-                "\nInventory List = " + inventoryList +
+                "\nInventoryBuilder List = " + inventoryList +
                 "\nExamination List = " + examinationList;
     }
 }

@@ -2,6 +2,7 @@ package com.solvd.pharmacyservice.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.solvd.pharmacyservice.models.builders.CustomerBuilder;
 
 import javax.xml.bind.annotation.*;
 import java.util.Date;

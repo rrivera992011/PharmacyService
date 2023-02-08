@@ -1,6 +1,5 @@
 package com.solvd.pharmacyservice.models;
 
-import javax.xml.bind.annotation.*;
 import java.sql.Date;
 
 public class CustomerOrder {

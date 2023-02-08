@@ -99,7 +99,7 @@ public class Prescription {
                 ", Amount Of Medicine = " + amountOfMedicine +
                 ", Date Filled = " + dateFilled +
                 ", Customer ID = " + customerId +
-                ", Inventory ID = " + inventoryId +
+                ", InventoryBuilder ID = " + inventoryId +
                 ", Recipe ID = " + recipeId;
     }
 }

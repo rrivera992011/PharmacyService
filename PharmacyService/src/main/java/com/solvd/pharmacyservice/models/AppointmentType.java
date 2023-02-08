@@ -20,7 +20,6 @@ public class AppointmentType {
     public AppointmentType() {
 
     }
-
     public int getAppointmentTypeId() {
         return this.appointmentTypeId;
     }

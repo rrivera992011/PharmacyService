@@ -13,6 +13,10 @@ public class Category {
     private String categoryName;
 
     public Category(int categoryId, String categoryName) {
+        if (categoryId == 0 || (categoryName == null)) {
+            throw new IllegalArgumentException("Category ID cannot be zero and Category Name cannot be null");
+        }
+
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }
