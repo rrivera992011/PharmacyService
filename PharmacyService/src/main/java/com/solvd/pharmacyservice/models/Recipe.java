@@ -1,7 +1,6 @@
 package com.solvd.pharmacyservice.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.solvd.pharmacyservice.models.builders.RecipeBuilder;
 
 import javax.xml.bind.annotation.*;
 
@@ -19,11 +18,6 @@ public class Recipe {
     }
 
     public Recipe() {
-    }
-
-    public Recipe(RecipeBuilder recipeBuilder) {
-        this.recipeId = recipeBuilder.getRecipeId();
-        this.recipeSize = recipeBuilder.getRecipeSize();
     }
 
     public int getRecipeId() {

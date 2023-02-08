@@ -1,7 +1,6 @@
 package com.solvd.pharmacyservice.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.solvd.pharmacyservice.models.builders.ExaminationTypeBuilder;
 
 import javax.xml.bind.annotation.*;
 
@@ -19,11 +18,6 @@ public class ExaminationType {
     }
 
     public ExaminationType() {
-    }
-
-    public ExaminationType(ExaminationTypeBuilder examinationTypeBuilder) {
-        this.examinationTypeId = examinationTypeBuilder.getExaminationTypeId();
-        this.examinationTypeName = examinationTypeBuilder.getExaminationTypeName();
     }
 
     public int getExaminationTypeId() {

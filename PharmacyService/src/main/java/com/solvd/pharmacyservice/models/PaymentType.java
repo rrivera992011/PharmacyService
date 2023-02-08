@@ -1,7 +1,6 @@
 package com.solvd.pharmacyservice.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.solvd.pharmacyservice.models.builders.PaymentTypeBuilder;
 
 import javax.xml.bind.annotation.*;
 
@@ -19,11 +18,6 @@ public class PaymentType {
     }
 
     public PaymentType() {
-    }
-
-    public PaymentType(PaymentTypeBuilder paymentTypeBuilder) {
-        this.paymentTypeId = paymentTypeBuilder.getPaymentTypeId();
-        this.paymentTypeName = paymentTypeBuilder.getPaymentTypeName();
     }
 
     public int getPaymentTypeId() {

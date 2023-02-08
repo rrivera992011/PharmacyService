@@ -1,7 +1,6 @@
 package com.solvd.pharmacyservice.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.solvd.pharmacyservice.models.builders.CategoryBuilder;
 
 import javax.xml.bind.annotation.*;
 
@@ -23,11 +22,6 @@ public class Category {
     }
 
     public Category() {
-    }
-
-    public Category(CategoryBuilder categoryBuilder) {
-        this.categoryId = categoryBuilder.getCategoryId();
-        this.categoryName = categoryBuilder.getCategoryName();
     }
 
     public int getCategoryId() {

@@ -44,7 +44,14 @@ public class CustomerBuilder {
     }
 
     public Customer build() {
-        return new Customer(this);
+        Customer customer = new Customer();
+        customer.setCustomerId(customerId);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
+        customer.setPhoneNumber(phoneNumber);
+        customer.setAge(age);
+        customer.setAddress(address);
+        return customer;
     }
 
     public int getCustomerId() {

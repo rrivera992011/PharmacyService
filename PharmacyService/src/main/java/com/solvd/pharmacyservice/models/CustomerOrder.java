@@ -1,7 +1,5 @@
 package com.solvd.pharmacyservice.models;
 
-import com.solvd.pharmacyservice.models.builders.CustomerOrderBuilder;
-
 import java.sql.Date;
 
 public class CustomerOrder {
@@ -23,16 +21,6 @@ public class CustomerOrder {
     }
 
     public CustomerOrder() {
-    }
-
-    public CustomerOrder(CustomerOrderBuilder customerOrderBuilder) {
-        this.customerOrderId = customerOrderBuilder.getCustomerOrderId();
-        this.orderTotal = customerOrderBuilder.getOrderTotal();
-        this.customerId = customerOrderBuilder.getCustomerId();
-        this.orderDate = customerOrderBuilder.getOrderDate();
-        this.paymentTypeId = customerOrderBuilder.getPaymentTypeId();
-        this.productId = customerOrderBuilder.getProductId();
-
     }
 
     public int getCustomerOrderId() {

@@ -1,9 +1,5 @@
 package com.solvd.pharmacyservice.models;
 
-import com.solvd.pharmacyservice.models.builders.AppointmentBuilder;
-import com.solvd.pharmacyservice.models.builders.CustomerBuilder;
-
-import javax.xml.bind.annotation.*;
 import java.sql.Date;
 
 public class Appointment {
@@ -24,14 +20,6 @@ public class Appointment {
         this.customerId = customerId;
         this.employeeId = employeeId;
         this.appointmentTypeId = appointmentTypeId;
-    }
-
-    public Appointment(AppointmentBuilder appointmentBuilder) {
-        this.appointmentId = appointmentBuilder.getAppointmentId();
-        this.appointmentDate = appointmentBuilder.getAppointmentDate();
-        this.customerId = appointmentBuilder.getCustomerId();
-        this.employeeId = appointmentBuilder.getEmployeeId();
-        this.appointmentTypeId = appointmentBuilder.getAppointmentTypeId();
     }
 
     public int getAppointmentId() {

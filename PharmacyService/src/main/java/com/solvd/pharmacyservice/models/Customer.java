@@ -39,15 +39,6 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(CustomerBuilder customerBuilder) {
-        this.customerId = customerBuilder.getCustomerId();
-        this.firstName = customerBuilder.getFirstName();
-        this.lastName = customerBuilder.getLastName();
-        this.phoneNumber = customerBuilder.getPhoneNumber();
-        this.age = customerBuilder.getAge();
-        this.address = customerBuilder.getAddress();
-    }
-
     public int getCustomerId() {
         return this.customerId;
     }
